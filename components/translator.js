@@ -15,6 +15,7 @@ class Translator {
             }
             sentence = this.title(sentence, locale);
             sentence = this.changeSpelling(sentence, locale);
+            sentence = this.capFirstLetter(sentence);
             return sentence;
         }
 
