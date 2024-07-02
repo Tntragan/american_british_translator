@@ -14,9 +14,12 @@ module.exports = function (app) {
       if (!sentence) {
         return res.json({ error: 'No text to translate' });
       }
-      // if (locale != "american-to-british" || locale != "british-to-american") {
-      //   return res.json({ error: 'Invalid value for locale field' })
-      // }
+      if (locale !== "american-to-british") {
+        if (locale !== "british-to-american") {
+          return res.json({ error: 'Invalid value for locale field' })
+        }
+        return res.json({ error: 'Invalid value for locale field' })
+      }
       const translateSentence = translator.translate({ text: sentence, locale: locale });
       if (sentence == translateSentence) {
         return res.json({ text: sentence, translation: "Everything looks good to me!" });
