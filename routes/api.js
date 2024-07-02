@@ -20,7 +20,7 @@ module.exports = function (app) {
         }
         return res.json({ error: 'Invalid value for locale field' })
       }
-      const translateSentence = translator.translate({ text: sentence, locale: locale });
+      const translateSentence = translator.translate(sentence, locale);
       if (sentence == translateSentence) {
         return res.json({ text: sentence, translation: "Everything looks good to me!" });
       }

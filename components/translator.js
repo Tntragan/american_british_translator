@@ -5,20 +5,45 @@ const britishOnly = require('./british-only.js')
 
 class Translator {
 
-    translate({ text: sentence, locale: locale }) {
+    translate(sentence, locale) {
         if (locale == "american-to-british") {
+            console.log(sentence);
             for (let key in americanOnly) {
                 const regex = new RegExp(key)
                 if (sentence.toLowerCase().match(regex, americanOnly[key])) {
                     sentence = sentence.toLowerCase().replace(regex, americanOnly[key]);
                 }
             }
+            sentence = this.changeTime(sentence, locale);
             sentence = this.title(sentence, locale);
             sentence = this.changeSpelling(sentence, locale);
             sentence = this.capFirstLetter(sentence);
+            console.log(sentence);
             return sentence;
         }
 
+    }
+
+    changeTime(sentence, locale) {
+        if (locale = "american-to=british") {
+            const timeRegex = /[0-1]?[0-9]:[0-5][0-9]/;
+            if (sentence.match(timeRegex)) {
+                const amTime = sentence.match(timeRegex);
+                const britTime = amTime[0].replace(":", ".");
+                console.log(amTime[0], britTime);
+                return sentence.replace(amTime[0], britTime);
+            }
+            return sentence;
+        }
+        if (locale = "british-to-american") {
+            const timeRegex = /[0-1]?[0-9].[0-5][0-9]/;
+            if (sentence.match(timeRegex)) {
+                const britTime = sentence.match(timeRegex);
+                const amTime = amTime[0].replace(".", ":");
+                return sentence.replace(britTime[0], amTime);
+            }
+            return sentence;
+        }
     }
 
     title(sentence, locale) {
