@@ -40,13 +40,11 @@ class Translator {
     }
 
     changeTime(sentence, locale) {
-        console.log("locale:", locale);
-        if (locale == "american-to=british") {
+        if (locale == "american-to-british") {
             const timeRegex = /[0-1]?[0-9]:[0-5][0-9]/;
             if (sentence.match(timeRegex)) {
                 const amTime = sentence.match(timeRegex);
                 const britTime = amTime[0].replace(":", ".");
-                console.log(amTime[0], britTime);
                 return sentence.replace(amTime[0], britTime);
             }
             return sentence;
@@ -56,7 +54,6 @@ class Translator {
             if (sentence.match(timeRegex)) {
                 const britTime = sentence.match(timeRegex);
                 const amTime = britTime[0].replace(".", ":");
-                console.log(britTime[0], amTime)
                 return sentence.replace(britTime[0], amTime);
             }
             return sentence;
