@@ -10,7 +10,7 @@ class Translator {
             console.log(sentence);
             for (let key in americanOnly) {
                 const regex = new RegExp(key)
-                if (sentence.toLowerCase().match(regex, americanOnly[key])) {
+                if (sentence.toLowerCase().match(regex)) {
                     sentence = sentence.toLowerCase().replace(regex, americanOnly[key]);
                 }
             }
@@ -21,11 +21,27 @@ class Translator {
             console.log(sentence);
             return sentence;
         }
+        if (locale == "british-to-american") {
+            console.log(sentence);
+            for (let key in britishOnly) {
+                const regex = new RegExp(key)
+                if (sentence.toLowerCase().match(regex)) {
+                    sentence = sentence.toLowerCase().replace(regex, britishOnly[key]);
+                }
+            }
+            sentence = this.changeTime(sentence, locale);
+            sentence = this.title(sentence, locale);
+            // sentence = this.changeSpelling(sentence, locale);
+            sentence = this.capFirstLetter(sentence);
+            console.log(sentence);
+            return sentence;
+        }
 
     }
 
     changeTime(sentence, locale) {
-        if (locale = "american-to=british") {
+        console.log("locale:", locale);
+        if (locale == "american-to=british") {
             const timeRegex = /[0-1]?[0-9]:[0-5][0-9]/;
             if (sentence.match(timeRegex)) {
                 const amTime = sentence.match(timeRegex);
@@ -35,11 +51,12 @@ class Translator {
             }
             return sentence;
         }
-        if (locale = "british-to-american") {
+        if (locale == "british-to-american") {
             const timeRegex = /[0-1]?[0-9].[0-5][0-9]/;
             if (sentence.match(timeRegex)) {
                 const britTime = sentence.match(timeRegex);
-                const amTime = amTime[0].replace(".", ":");
+                const amTime = britTime[0].replace(".", ":");
+                console.log(britTime[0], amTime)
                 return sentence.replace(britTime[0], amTime);
             }
             return sentence;
@@ -49,11 +66,20 @@ class Translator {
     title(sentence, locale) {
         if (locale == "american-to-british") {
             for (let key in americanToBritishTitles) {
-                const regex = new RegExp(key, "i")
-                sentence = sentence.replace(regex, americanToBritishTitles[key].charAt(0).toUpperCase() + americanToBritishTitles[key].slice(1));
+                const regex = new RegExp(key + '\\s', "gi")
+                if (sentence.match(regex)) {
+                    sentence = sentence.replace(regex, americanToBritishTitles[key].charAt(0).toUpperCase() + americanToBritishTitles[key].slice(1) + " ");
+                }
             }
+            return sentence;
         }
-        return sentence;
+        if (locale == "british-to-american") {
+            for (let key in americanToBritishTitles) {
+                const regex = new RegExp(americanToBritishTitles[key] + '\\s', "gi")
+                sentence = sentence.replace(regex, key.charAt(0).toUpperCase() + key.slice(1) + " ");
+            }
+            return sentence;
+        }
     }
 
     changeSpelling(sentence, locale) {

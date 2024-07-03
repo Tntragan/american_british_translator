@@ -12,12 +12,9 @@ module.exports = function (app) {
       const sentence = req.body.text;
       console.log(locale);
       if (!sentence) {
-        return res.json({ error: 'No text to translate' });
+        return res.json({ error: "No text to translate" });
       }
-      if (locale !== "american-to-british") {
-        if (locale !== "british-to-american") {
-          return res.json({ error: 'Invalid value for locale field' })
-        }
+      if (locale !== "american-to-british" && locale !== "british-to-american") {
         return res.json({ error: 'Invalid value for locale field' })
       }
       const translateSentence = translator.translate(sentence, locale);
