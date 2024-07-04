@@ -11,6 +11,9 @@ module.exports = function (app) {
       const locale = req.body.locale;
       const sentence = req.body.text;
       console.log(locale);
+      if (!locale || sentence == undefined) {
+        return res.json({ error: "Required field(s) missing" });
+      }
       if (!sentence) {
         return res.json({ error: "No text to translate" });
       }

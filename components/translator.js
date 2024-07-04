@@ -11,7 +11,7 @@ class Translator {
             for (let key in americanOnly) {
                 const regex = new RegExp(key)
                 if (sentence.toLowerCase().match(regex)) {
-                    sentence = sentence.toLowerCase().replace(regex, americanOnly[key]);
+                    sentence = sentence.toLowerCase().replace(regex, `<span class='highlight'>${americanOnly[key]}</span>`); //americanOnly[key]);
                 }
             }
             sentence = this.changeTime(sentence, locale);
@@ -26,7 +26,7 @@ class Translator {
             for (let key in britishOnly) {
                 const regex = new RegExp(key)
                 if (sentence.toLowerCase().match(regex)) {
-                    sentence = sentence.toLowerCase().replace(regex, britishOnly[key]);
+                    sentence = sentence.toLowerCase().replace(regex, `<span class='highlight'>${britishOnly[key]}</span>`);
                 }
             }
             sentence = this.changeTime(sentence, locale);
@@ -45,7 +45,7 @@ class Translator {
             if (sentence.match(timeRegex)) {
                 const amTime = sentence.match(timeRegex);
                 const britTime = amTime[0].replace(":", ".");
-                return sentence.replace(amTime[0], britTime);
+                return sentence.replace(amTime[0], `<span class='highlight'>${britTime}</span>`);
             }
             return sentence;
         }
@@ -54,7 +54,7 @@ class Translator {
             if (sentence.match(timeRegex)) {
                 const britTime = sentence.match(timeRegex);
                 const amTime = britTime[0].replace(".", ":");
-                return sentence.replace(britTime[0], amTime);
+                return sentence.replace(britTime[0], `<span class='highlight'>${amTime}</span>`);
             }
             return sentence;
         }
@@ -63,9 +63,10 @@ class Translator {
     title(sentence, locale) {
         if (locale == "american-to-british") {
             for (let key in americanToBritishTitles) {
-                const regex = new RegExp(key + '\\s', "gi")
+                const regex = new RegExp(key, "gi")
                 if (sentence.match(regex)) {
-                    sentence = sentence.replace(regex, americanToBritishTitles[key].charAt(0).toUpperCase() + americanToBritishTitles[key].slice(1) + " ");
+                    const newTitle = americanToBritishTitles[key].charAt(0).toUpperCase() + americanToBritishTitles[key].slice(1);
+                    sentence = sentence.replace(regex, `<span class='highlight'>${newTitle}</span>`); // americanToBritishTitles[key].charAt(0).toUpperCase() + americanToBritishTitles[key].slice(1) + " ");
                 }
             }
             return sentence;
@@ -73,7 +74,11 @@ class Translator {
         if (locale == "british-to-american") {
             for (let key in americanToBritishTitles) {
                 const regex = new RegExp(americanToBritishTitles[key] + '\\s', "gi")
-                sentence = sentence.replace(regex, key.charAt(0).toUpperCase() + key.slice(1) + " ");
+                if (sentence.match(regex)) {
+                    const newTitle = key.charAt(0).toUpperCase() + key.slice(1) + " ";
+                    sentence = sentence.replace(regex, `<span class='highlight'>${newTitle}</span>`); //key.charAt(0).toUpperCase() + key.slice(1) + " ");
+                }
+
             }
             return sentence;
         }
@@ -87,9 +92,10 @@ class Translator {
                     const word = sentenceArray[i];
                     if (word.toLowerCase() == key) {
                         if (word.charCodeAt(0) > 64 && word.charCodeAt(0) < 91) {
-                            sentenceArray[i] = americanToBritishSpelling[key].charAt(0).toUpperCase() + americanToBritishSpelling[key].slice(1);
+                            const newSpelling = americanToBritishSpelling[key].charAt(0).toUpperCase() + americanToBritishSpelling[key].slice(1);
+                            sentenceArray[i] = `<span class='highlight'>${newSpelling}</span>`;
                         } else {
-                            sentenceArray[i] = americanToBritishSpelling[key];
+                            sentenceArray[i] = `<span class='highlight'>${americanToBritishSpelling[key]}</span>`;
                         }
                     }
                 }
