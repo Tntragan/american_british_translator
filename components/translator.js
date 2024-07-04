@@ -24,14 +24,16 @@ class Translator {
         if (locale == "british-to-american") {
             console.log(sentence);
             for (let key in britishOnly) {
-                const regex = new RegExp(key)
+                const regex = new RegExp(key + '\\s')
                 if (sentence.toLowerCase().match(regex)) {
-                    sentence = sentence.toLowerCase().replace(regex, `<span class='highlight'>${britishOnly[key]}</span>`);
+                    console.log(regex);
+                    sentence = sentence.toLowerCase().replace(regex, `<span class='highlight'>${britishOnly[key]} </span>`);
                 }
             }
+            console.log(sentence);
             sentence = this.changeTime(sentence, locale);
             sentence = this.title(sentence, locale);
-            // sentence = this.changeSpelling(sentence, locale);
+            sentence = this.changeSpelling(sentence, locale);
             sentence = this.capFirstLetter(sentence);
             console.log(sentence);
             return sentence;
@@ -85,6 +87,7 @@ class Translator {
     }
 
     changeSpelling(sentence, locale) {
+        console.log("Sentence coming into changeSpelling:", sentence);
         if (locale == "american-to-british") {
             const sentenceArray = sentence.split(/(\b)/g);
             for (let i = 0; i < sentenceArray.length; i++) {
@@ -103,9 +106,28 @@ class Translator {
             const newSentence = sentenceArray.join('');
             return newSentence;
         }
+        if (locale == "british-to-american") {
+            const sentenceArray = sentence.split(/(\b)/g);
+            for (let i = 0; i < sentenceArray.length; i++) {
+                for (let key in americanToBritishSpelling) {
+                    const word = sentenceArray[i];
+                    if (word.toLowerCase() == americanToBritishSpelling[key]) {
+                        if (word.charCodeAt(0) > 64 && word.charCodeAt(0) < 91) {
+                            const newSpelling = key.charAt(0).toUpperCase() + key.slice(1);
+                            sentenceArray[i] = `<span class='highlight'>${newSpelling}</span>`;
+                        } else {
+                            sentenceArray[i] = `<span class='highlight'>${key}</span>`;
+                        }
+                    }
+                }
+            }
+            const newSentence = sentenceArray.join('');
+            return newSentence;
+        }
     }
 
     capFirstLetter(sentence) {
+        console.log("Sentence in capFirstLetter:", sentence)
         sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1);
         for (let i = 0; i < sentence.length; i++) {
             if (sentence[i].match(/[!.?]/g) && i != sentence.length - 1) {
