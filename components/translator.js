@@ -11,9 +11,6 @@ class Translator {
             for (let key in americanOnly) {
                 const regex = new RegExp('\\b' + key + '\\b')
                 if (sentence.toLowerCase().match(regex)) {
-                    const newWord = sentence.toLowerCase().match(regex)[0];
-                    console.log(newWord, regex);
-                    console.log(sentence);
                     sentence = sentence.toLowerCase().replace(regex, `<span class="highlight">${americanOnly[key]}</span>`);
                     console.log(sentence);
                 }
@@ -30,7 +27,6 @@ class Translator {
             for (let key in britishOnly) {
                 const regex = new RegExp('\\b' + key + '\\b')
                 if (sentence.toLowerCase().match(regex)) {
-                    console.log(regex);
                     sentence = sentence.toLowerCase().replace(regex, `<span class="highlight">${britishOnly[key]}</span>`);
                 }
             }

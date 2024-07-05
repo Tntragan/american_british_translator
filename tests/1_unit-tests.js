@@ -8,121 +8,145 @@ suite('Unit Tests', () => {
     test('Translate "Mangoes are my favorite fruit." to British English', () => {
         let sentence = "Mangoes are my favorite fruit.";
         let locale = "american-to-british"
-        assert.equal(translate.translate(sentence, locale), "Mangoes are my <span class='highlight'>favourite</span> fruit.");
+        assert.equal(translate.translate(sentence, locale), 'Mangoes are my <span class="highlight">favourite</span> fruit.');
     });
 
     test('Translate "I ate yogurt for breakfast." to British English', () => {
         let sentence = "I ate yogurt for breakfast.";
         let locale = "american-to-british"
-        assert.equal(translate.translate(sentence, locale), "I ate <span class='highlight'>yoghurt</span> for breakfast.");
+        assert.equal(translate.translate(sentence, locale), 'I ate <span class="highlight">yoghurt</span> for breakfast.');
     });
 
     test("Translate 'We had a party at my friend's condo.' to British English", () => {
         let sentence = "We had a party at my friend's condo.";
         let locale = "american-to-british"
-        assert.equal(translate.translate(sentence, locale), "We had a party at my friend's <span class='highlight'>flat</span>.");
+        assert.equal(translate.translate(sentence, locale), 'We had a party at my friend\'s <span class="highlight">flat</span>.');
     });
 
     test('Translate "Can you toss this in the trashcan for me?" to British English', () => {
         let sentence = "Can you toss this in the trash can for me?";
         let locale = "american-to-british"
-        assert.equal(translate.translate(sentence, locale), "Can you toss this in the <span class='highlight'>rubbish</span> can for me?");
+        assert.equal(translate.translate(sentence, locale), 'Can you toss this in the <span class="highlight">rubbish</span> can for me?');
     });
 
     test('Translate "The parking lot was full." to British English', () => {
         let sentence = "The parking lot was full.";
         let locale = "american-to-british"
-        assert.equal(translate.translate(sentence, locale), "The <span class='highlight'>car park</span> was full.");
+        assert.equal(translate.translate(sentence, locale), 'The <span class="highlight">car park</span> was full.');
     });
 
     test('Translate "Like a high tech Rube Goldberg machine." to British English', () => {
         let sentence = "Like a high tech Rube Goldberg machine.";
         let locale = "american-to-british"
-        assert.equal(translate.translate(sentence, locale), "Like a high tech <span class='highlight'>Heath Robinson device</span>.");
+        assert.equal(translate.translate(sentence, locale), 'Like a high tech <span class="highlight">Heath Robinson device</span>.');
     });
 
     test('Translate "To play hooky means to skip class or work." to British English', () => {
         let sentence = "To play hooky means to skip class or work.";
         let locale = "american-to-british"
-        assert.equal(translate.translate(sentence, locale), "To <span class='highlight'>bunk off</span> means to skip class or work.");
+        assert.equal(translate.translate(sentence, locale), 'To <span class="highlight">bunk off</span> means to skip class or work.');
     });
 
     test('Translate "No Mr. Bond, I expect you to die." to British English', () => {
         let sentence = "No Mr. Bond, I expect you to die.";
         let locale = "american-to-british"
-        assert.equal(translate.translate(sentence, locale), "No <span class='highlight'>Mr</span> Bond, I expect you to die.");
+        assert.equal(translate.translate(sentence, locale), 'No <span class="highlight">Mr</span> Bond, I expect you to die.');
     });
 
     test('Translate "Dr. Grosh will see you now." to British English', () => {
         let sentence = "Dr. Grosh will see you now.";
         let locale = "american-to-british"
-        assert.equal(translate.translate(sentence, locale), "<span class='highlight'>Dr</span> Grosh will see you now.");
+        assert.equal(translate.translate(sentence, locale), '<span class="highlight">Dr</span> Grosh will see you now.');
     });
 
     test('Translate "Lunch is at 12:15 today." to British English', () => {
         let sentence = "Lunch is at 12:15 today.";
         let locale = "american-to-british"
-        assert.equal(translate.translate(sentence, locale), "Lunch is at <span class='highlight'>12.15</span> today.");
+        assert.equal(translate.translate(sentence, locale), 'Lunch is at <span class="highlight">12.15</span> today.');
     });
 
     test('Translate "We watched the footie match for a while." to American English', () => {
         let sentence = "We watched the footie match for a while.";
         let locale = "british-to-american"
-        assert.equal(translate.translate(sentence, locale), "We watched the <span class='highlight'>soccer</span> match for a while.");
+        assert.equal(translate.translate(sentence, locale), 'We watched the <span class="highlight">soccer</span> match for a while.');
     });
 
     test('Translate "Paracetamol takes up to an hour to work." to American English', () => {
         let sentence = "Paracetamol takes up to an hour to work.";
         let locale = "british-to-american"
-        assert.equal(translate.translate(sentence, locale), "Lunch is at <span class='highlight'>12.15</span> today.");
+        assert.equal(translate.translate(sentence, locale), '<span class="highlight">Tylenol</span> takes up to an hour to work.');
     });
 
-    test('Translate "Lunch is at 12:15 today." to British English', () => {
-        let sentence = "Lunch is at 12:15 today.";
+    test('Translate "First, caramelise the onions." to American English', () => {
+        let sentence = "First, caramelise the onions.";
         let locale = "british-to-american"
-        assert.equal(translate.translate(sentence, locale), "Lunch is at <span class='highlight'>12.15</span> today.");
+        assert.equal(translate.translate(sentence, locale), 'First, <span class="highlight">caramelize</span> the onions.');
     });
 
-    test('Translate "Lunch is at 12:15 today." to British English', () => {
-        let sentence = "Lunch is at 12:15 today.";
+    test('Translate "I spent the bank holiday at the funfair." to American English', () => {
+        let sentence = "I spent the bank holiday at the funfair.";
         let locale = "british-to-american"
-        assert.equal(translate.translate(sentence, locale), "Lunch is at <span class='highlight'>12.15</span> today.");
+        assert.equal(translate.translate(sentence, locale), 'I spent the <span class="highlight">public holiday</span> at the <span class="highlight">carnival</span>.');
     });
 
-    test('Translate "Lunch is at 12:15 today." to British English', () => {
-        let sentence = "Lunch is at 12:15 today.";
+    test('Translate "I had a bicky then went to the chippy." to American English', () => {
+        let sentence = "I had a bicky then went to the chippy.";
         let locale = "british-to-american"
-        assert.equal(translate.translate(sentence, locale), "Lunch is at <span class='highlight'>12.15</span> today.");
+        assert.equal(translate.translate(sentence, locale), 'I had a <span class="highlight">cookie</span> then went to the <span class="highlight">fish-and-<span class="highlight">fish-and-chip shop</span></span>.');
     });
 
-    test('Translate "Lunch is at 12:15 today." to British English', () => {
-        let sentence = "Lunch is at 12:15 today.";
+    test('Translate "I\'ve just got bits and bobs in my bum bag." to American English', () => {
+        let sentence = "I've just got bits and bobs in my bum bag.";
         let locale = "british-to-american"
-        assert.equal(translate.translate(sentence, locale), "Lunch is at <span class='highlight'>12.15</span> today.");
+        assert.equal(translate.translate(sentence, locale), 'I\'ve just got <span class="highlight">odds and ends</span> in my <span class="highlight">fanny pack</span>.');
     });
 
-    test('Translate "Lunch is at 12:15 today." to British English', () => {
-        let sentence = "Lunch is at 12:15 today.";
+    test('Translate "The car boot sale at Boxted Airfield was called off." to American English', () => {
+        let sentence = "The car boot sale at Boxted Airfield was called off.";
         let locale = "british-to-american"
-        assert.equal(translate.translate(sentence, locale), "Lunch is at <span class='highlight'>12.15</span> today.");
+        assert.equal(translate.translate(sentence, locale), 'The <span class="highlight">swap meet</span> at boxted airfield was called off.');
     });
 
-    test('Translate "Lunch is at 12:15 today." to British English', () => {
-        let sentence = "Lunch is at 12:15 today.";
+    test('Translate "Have you met Mrs Kalyani?" to American English', () => {
+        let sentence = "Have you met Mrs Kalyani?";
         let locale = "british-to-american"
-        assert.equal(translate.translate(sentence, locale), "Lunch is at <span class='highlight'>12.15</span> today.");
+        assert.equal(translate.translate(sentence, locale), 'Have you met <span class="highlight">Mrs.</span> Kalyani?');
     });
 
-    test('Translate "Lunch is at 12:15 today." to British English', () => {
-        let sentence = "Lunch is at 12:15 today.";
+    test('Translate "Prof Joyner of King\'s College, London." to American English', () => {
+        let sentence = "Prof Joyner of King's College, London.";
         let locale = "british-to-american"
-        assert.equal(translate.translate(sentence, locale), "Lunch is at <span class='highlight'>12.15</span> today.");
+        assert.equal(translate.translate(sentence, locale), '<span class="highlight">Prof.</span> Joyner of King\'s College, London.');
     });
 
-    test('Translate "Lunch is at 12:15 today." to British English', () => {
-        let sentence = "Lunch is at 12:15 today.";
+    test('Translate "Tea time is usually around 4 or 4.30." to American English', () => {
+        let sentence = "Tea time is usually around 4 or 4.30.";
         let locale = "british-to-american"
-        assert.equal(translate.translate(sentence, locale), "Lunch is at <span class='highlight'>12.15</span> today.");
+        assert.equal(translate.translate(sentence, locale), 'Tea time is usually around 4 or <span class="highlight">4:30</span>.');
+    });
+
+    test('Highlight translation in "Mangoes are my favorite fruit."', () => {
+        let sentence = "Mangoes are my favorite fruit.";
+        let locale = "american-to-british"
+        assert.equal(translate.translate(sentence, locale), 'Mangoes are my <span class="highlight">favourite</span> fruit.');
+    });
+
+    test('Highlight translation in "I ate yogurt for breakfast."', () => {
+        let sentence = "I ate yogurt for breakfast.";
+        let locale = "american-to-british"
+        assert.equal(translate.translate(sentence, locale), 'I ate <span class="highlight">yoghurt</span> for breakfast.');
+    });
+
+    test('Highlight translation in We watched the footie match for a while.', () => {
+        let sentence = "We watched the footie match for a while.";
+        let locale = "british-to-american"
+        assert.equal(translate.translate(sentence, locale), 'We watched the <span class="highlight">soccer</span> match for a while.');
+    });
+
+    test('Highlight translation in "Paracetamol takes up to an hour to work."', () => {
+        let sentence = "Paracetamol takes up to an hour to work.";
+        let locale = "british-to-american"
+        assert.equal(translate.translate(sentence, locale), '<span class="highlight">Tylenol</span> takes up to an hour to work.');
     });
 
 });
