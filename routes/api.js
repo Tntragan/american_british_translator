@@ -24,7 +24,6 @@ module.exports = function (app) {
       if (sentence == translateSentence) {
         return res.json({ text: sentence, translation: "Everything looks good to me!" });
       }
-
       return res.json({ text: sentence, translation: translateSentence });
     });
 };
